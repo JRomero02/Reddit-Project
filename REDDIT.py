@@ -24,8 +24,8 @@ def search(sub,num=25):
             #print(i.title)
             i.comments.replace_more(limit=0)
             comments = i.comments
+            #Possible retrievable information
             posts.append({'title':i.title,'comments':i.comments,'domain':i.domain,'likes':i.likes,'score':i.score,'downs':i.downs,'ups':i.ups,'created_utc':i.created_utc,'num_comments':i.num_comments,'subreddit':i.subreddit})
-
             for post in posts:
                 comments=post['comments']
                 myFile.write(post['title']+"\n")
@@ -35,7 +35,7 @@ def search(sub,num=25):
                 myFile.write(comment.body+"\n")
             tb = TextBlob(comment.body)
             sentiments=(tb.sentiment.polarity)
-            #produces more details of each subreddit, crashed my system twice
+            #produces more details for each subreddit
             #print("In the post {0} there are {1} comments. The average sentiments of the comments within this post is {2}".format(i.title,i.num_comments,sentiments))
             my_list1.append(sentiments)
         print("Of the Game Threads analyzed in this analysis, the Average sentiment score of this subredditt: {0} is {1}".format(sub,statistics.mean(my_list1)))
